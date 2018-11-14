@@ -5,6 +5,6 @@
             android:id="@+id/nav_graph" app:startDestination="@id/trainingFragment">
 
     <fragment android:id="@+id/trainingFragment"
-              android:name="com.schibsted.mrfitness.features.training.TrainingActivity"
+              android:name="com.schibsted.mrfitness.features.training.TrainingFragment"
               android:label="TrainingFragment"/>
 </navigation>

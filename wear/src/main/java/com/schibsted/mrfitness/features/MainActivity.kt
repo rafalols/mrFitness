@@ -1,23 +1,22 @@
 package com.schibsted.mrfitness.features
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.wearable.activity.WearableActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.wear.ambient.AmbientModeSupport
 import com.schibsted.mrfitness.R
-import com.schibsted.mrfitness.features.training.TrainingActivity
+import com.schibsted.mrfitness.common.base.AmbientCallback
 
-class MainActivity : WearableActivity() {
+class MainActivity : AppCompatActivity(), AmbientModeSupport.AmbientCallbackProvider {
+
+    override fun getAmbientCallback(): AmbientModeSupport.AmbientCallback = AmbientCallback()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // Enables Always-on
-        setAmbientEnabled()
-
-        Intent(this, TrainingActivity::class.java)
-            .also { startActivity(it) }
-
     }
+
+    override fun onSupportNavigateUp()
+            = findNavController(R.id.nav_host).navigateUp()
 
 }
