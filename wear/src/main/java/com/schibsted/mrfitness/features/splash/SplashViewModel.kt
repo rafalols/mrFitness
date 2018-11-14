@@ -29,7 +29,7 @@ class SplashViewModel(
             .subscribe({ isVerified ->
                 run {
                     if (isVerified) {
-                        goToLoginEvent.value = Event(Unit)
+                        goToTrainingEvent.value = Event(Unit)
                     }
 //                    else {
 //                        goToTrainingEvent.value = Event(Unit)

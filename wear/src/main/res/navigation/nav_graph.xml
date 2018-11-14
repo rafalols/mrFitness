@@ -9,10 +9,5 @@
     <fragment android:id="@+id/splashFragment" android:name="com.schibsted.mrfitness.features.splash.SplashFragment"
               android:label="SplashFragment">
         <action android:id="@+id/action_splashFragment_to_trainingFragment" app:destination="@id/trainingFragment"/>
-        <action android:id="@+id/action_splashFragment_to_loginFragment" app:destination="@id/loginFragment"/>
-    </fragment>
-    <fragment android:id="@+id/loginFragment" android:name="com.schibsted.mrfitness.features.login.LoginFragment"
-              android:label="LoginFragment">
-        <action android:id="@+id/action_loginFragment_to_trainingFragment" app:destination="@id/trainingFragment"/>
     </fragment>
 </navigation>

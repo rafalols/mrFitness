@@ -54,7 +54,6 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>(),
                     val mGivenName = signInAccount?.givenName
                     val mFamilyName = signInAccount?.familyName
                     val mEmail = signInAccount?.email
-                    findNavController().navigate(R.id.action_loginFragment_to_trainingFragment)
                 }
             }
         }
