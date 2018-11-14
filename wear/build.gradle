@@ -36,6 +36,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.wear:wear:1.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
 
     //Navigation
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
@@ -50,9 +51,6 @@ dependencies {
     //RX
     implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-
-
-
 
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha07'
