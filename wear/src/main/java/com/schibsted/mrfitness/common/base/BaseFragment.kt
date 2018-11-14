@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.schibsted.mrfitness.common.utils.Event
+import com.schibsted.mrfitness.common.utils.EventObserver
 import com.schibsted.mrfitness.common.utils.LayoutResId
 
 abstract class BaseFragment<VM: ViewModel, VDB: ViewDataBinding>: Fragment() {
@@ -32,5 +35,9 @@ abstract class BaseFragment<VM: ViewModel, VDB: ViewDataBinding>: Fragment() {
     protected abstract fun bindViewModel()
 
     open fun start(view: View?) {}
+
+    fun <T> LiveData<Event<T>>.observeEvent(observe: ((value: T?) -> Unit)) {
+        this.observe(this@BaseFragment, EventObserver { value -> observe(value) })
+    }
 
 }

@@ -1,6 +1,5 @@
 package com.schibsted.mrfitness.features.splash
 
-import android.os.Handler
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.schibsted.mrfitness.R
@@ -18,8 +17,7 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
     }
 
     override fun start(view: View?) {
-        Handler().postDelayed({
-            findNavController().navigate(R.id.action_splashFragment_to_trainingFragment)
-        }, 1000)
+        viewModel.goToTrainingEvent.observeEvent { findNavController().navigate(R.id.action_splashFragment_to_trainingFragment) }
+        viewModel.goToLoginEvent.observeEvent { findNavController().navigate(R.id.action_splashFragment_to_loginFragment) }
     }
 }

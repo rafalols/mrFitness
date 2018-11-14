@@ -10,21 +10,32 @@ import java.util.concurrent.TimeUnit
 
 class SplashViewModel(
     countdownUseCase: CountdownUseCase,
-    private val verifyUserUseCase: VerifyUserUseCase)
-    : BaseViewModel() {
+    private val verifyUserUseCase: VerifyUserUseCase
+) : BaseViewModel() {
 
     private val splashDuration = 500L
     val goToLoginEvent: MutableLiveData<Event<Unit>> = MutableLiveData()
     val goToTrainingEvent: MutableLiveData<Event<Unit>> = MutableLiveData()
 
-init {
-    countdownUseCase
-        .execute(splashDuration, TimeUnit.MILLISECONDS)
-        .subscribe { _ -> checkIsUserAuthenticated() }
-        .addTo(disposables)
-}
+    init {
+        countdownUseCase
+            .execute(splashDuration, TimeUnit.MILLISECONDS)
+            .subscribe { _ -> checkIsUserAuthenticated() }
+            .addTo(disposables)
+    }
 
     private fun checkIsUserAuthenticated() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        verifyUserUseCase.isUserVerified()
+            .subscribe({ isVerified ->
+                run {
+                    if (isVerified) {
+                        goToLoginEvent.value = Event(Unit)
+                    }
+//                    else {
+//                        goToTrainingEvent.value = Event(Unit)
+//                    }
+                }
+            }, { goToTrainingEvent.value = Event(Unit) })
+            .addTo(disposables)
     }
 }
