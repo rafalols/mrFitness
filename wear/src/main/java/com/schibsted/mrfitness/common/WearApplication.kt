@@ -1,4 +1,4 @@
-package com.schibsted.mrfitness
+package com.schibsted.mrfitness.common
 
 import android.app.Application
 import com.schibsted.mrfitness.common.di.controllersModule

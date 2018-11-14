@@ -1,5 +1,7 @@
 package com.schibsted.mrfitness.common.controller
 
-class SensorController() {
+import android.hardware.SensorManager
+
+class SensorController(sensorManager: SensorManager) {
 
 }

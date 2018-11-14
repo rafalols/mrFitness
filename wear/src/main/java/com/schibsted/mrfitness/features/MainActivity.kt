@@ -1,7 +1,10 @@
-package com.schibsted.mrfitness
+package com.schibsted.mrfitness.features
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
+import com.schibsted.mrfitness.R
+import com.schibsted.mrfitness.features.training.TrainingActivity
 
 class MainActivity : WearableActivity() {
 
@@ -11,5 +14,10 @@ class MainActivity : WearableActivity() {
 
         // Enables Always-on
         setAmbientEnabled()
+
+        Intent(this, TrainingActivity::class.java)
+            .also { startActivity(it) }
+
     }
+
 }
