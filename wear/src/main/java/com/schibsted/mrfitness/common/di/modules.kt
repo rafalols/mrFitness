@@ -1,9 +1,5 @@
 package com.schibsted.mrfitness.common.di
 
-import android.hardware.SensorManager
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.GoogleApiClient
-import com.schibsted.mrfitness.common.controller.SensorController
 import com.schibsted.mrfitness.common.usecase.CountdownUseCase
 import com.schibsted.mrfitness.features.login.LoginViewModel
 import com.schibsted.mrfitness.features.splash.SplashViewModel

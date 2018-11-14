@@ -9,8 +9,7 @@ import io.reactivex.subjects.PublishSubject
 
 class SensorController(private val sensorManager: SensorManager): SensorEventListener {
 
-    private val gravitySesnor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)
-    private val accelerometrSesnor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+    private val accelerometrSesnor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION)
 
     private val sensorSubject = PublishSubject.create<SensorEvent>()
 
@@ -19,9 +18,6 @@ class SensorController(private val sensorManager: SensorManager): SensorEventLis
     }
 
     init {
-        gravitySesnor?.also {
-            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
-        }
         accelerometrSesnor?.also {
             sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_NORMAL)
         }
