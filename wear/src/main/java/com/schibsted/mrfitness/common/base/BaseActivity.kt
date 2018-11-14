@@ -4,18 +4,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.ViewModel
 import androidx.wear.ambient.AmbientModeSupport
 import com.schibsted.mrfitness.common.utils.LayoutResId
 
-abstract class BaseActivity<VM: ViewModel, VDB: ViewDataBinding>: AppCompatActivity(), LifecycleOwner, AmbientModeSupport.AmbientCallbackProvider {
+abstract class BaseActivity<VM : ViewModel, VDB : ViewDataBinding> : AppCompatActivity(),
+    AmbientModeSupport.AmbientCallbackProvider {
 
-     override fun getAmbientCallback(): AmbientModeSupport.AmbientCallback = AmbientCallback()
-
-     private val mLifecycleRegistry: LifecycleRegistry by lazy { LifecycleRegistry(this) }
+    override fun getAmbientCallback(): AmbientModeSupport.AmbientCallback = AmbientCallback()
 
     protected abstract val viewModel: VM
     lateinit var binding: VDB
@@ -23,7 +19,6 @@ abstract class BaseActivity<VM: ViewModel, VDB: ViewDataBinding>: AppCompatActiv
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mLifecycleRegistry.markState(Lifecycle.State.CREATED)
         (this::class.annotations
             .find { it is LayoutResId } as? LayoutResId)
             ?.let {
@@ -35,14 +30,6 @@ abstract class BaseActivity<VM: ViewModel, VDB: ViewDataBinding>: AppCompatActiv
 
         AmbientModeSupport.attach(this)
     }
-
-    override fun onStart() {
-        super.onStart()
-        mLifecycleRegistry.markState(Lifecycle.State.STARTED)
-    }
-
-    override fun getLifecycle(): Lifecycle = mLifecycleRegistry
-
 
     protected abstract fun bindViewModel()
 
