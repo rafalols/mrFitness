@@ -26,11 +26,11 @@ abstract class BaseFragment<VM: ViewModel, VDB: ViewDataBinding>: Fragment() {
                 binding.root
             }
             ?.also { view ->
-                afterOnCreateView(view)
+                start(view)
             } ?: throw IllegalStateException("BaseFragment must have LayoutResId annotation")
 
     protected abstract fun bindViewModel()
 
-    open fun afterOnCreateView(view: View?) {}
+    open fun start(view: View?) {}
 
 }
