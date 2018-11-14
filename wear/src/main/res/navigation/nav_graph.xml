@@ -2,9 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/nav_graph" app:startDestination="@id/trainingFragment">
+            android:id="@+id/nav_graph" app:startDestination="@id/splashFragment">
 
     <fragment android:id="@+id/trainingFragment"
               android:name="com.schibsted.mrfitness.features.training.TrainingFragment"
               android:label="TrainingFragment"/>
+    <fragment android:id="@+id/splashFragment" android:name="com.schibsted.mrfitness.features.splash.SplashFragment"
+              android:label="SplashFragment">
+        <action android:id="@+id/action_splashFragment_to_trainingFragment" app:destination="@id/trainingFragment"/>
+    </fragment>
 </navigation>
