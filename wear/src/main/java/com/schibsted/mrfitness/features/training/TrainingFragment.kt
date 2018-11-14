@@ -1,5 +1,7 @@
 package com.schibsted.mrfitness.features.training
 
+import android.content.Context
+import android.hardware.SensorManager
 import com.schibsted.mrfitness.R
 import com.schibsted.mrfitness.common.base.BaseFragment
 import com.schibsted.mrfitness.common.utils.LayoutResId
@@ -13,6 +15,8 @@ class TrainingFragment: BaseFragment<TrainingViewModel, FragmentTrainingBinding>
 
     override fun bindViewModel() {
         binding.viewModel = viewModel
+        viewModel.sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
+
 
 }
