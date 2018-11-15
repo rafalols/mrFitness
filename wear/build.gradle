@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
+
 
 android {
     compileSdkVersion 28
@@ -43,6 +43,10 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-fragment:$navigation_version"
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+
     // AndroidX (based on koin-android)
     // Koin AndroidX Scope feature
     implementation "org.koin:koin-androidx-scope:$koin_version"
@@ -55,3 +59,5 @@ dependencies {
     compileOnly 'com.google.android.wearable:wearable:2.4.0'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha07'
 }
+
+apply plugin: 'com.google.gms.google-services'

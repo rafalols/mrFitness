@@ -17,6 +17,6 @@ class SplashFragment : BaseFragment<SplashViewModel, FragmentSplashBinding>() {
     }
 
     override fun start(view: View?) {
-        viewModel.goToTrainingEvent.observeEvent { findNavController().navigate(R.id.action_splashFragment_to_trainingFragment) }
+        viewModel.goToStartEvent.observeEvent { findNavController().navigate(R.id.action_splashFragment_to_startFragment) }
     }
 }

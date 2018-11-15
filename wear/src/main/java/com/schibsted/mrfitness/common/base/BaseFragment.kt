@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.schibsted.mrfitness.common.utils.Event
 import com.schibsted.mrfitness.common.utils.EventObserver
@@ -38,6 +39,10 @@ abstract class BaseFragment<VM: ViewModel, VDB: ViewDataBinding>: Fragment() {
 
     fun <T> LiveData<Event<T>>.observeEvent(observe: ((value: T?) -> Unit)) {
         this.observe(this@BaseFragment, EventObserver { value -> observe(value) })
+    }
+
+    fun <T> LiveData<T>.observe(observe: ((value: T?) -> Unit)) {
+        this.observe(this@BaseFragment, Observer { value -> observe(value) })
     }
 
 }

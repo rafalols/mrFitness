@@ -18,5 +18,4 @@ class TrainingFragment: BaseFragment<TrainingViewModel, FragmentTrainingBinding>
         viewModel.sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
-
 }
