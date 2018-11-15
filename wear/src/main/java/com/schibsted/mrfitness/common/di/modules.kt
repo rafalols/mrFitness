@@ -3,6 +3,7 @@ package com.schibsted.mrfitness.common.di
 import com.google.firebase.database.FirebaseDatabase
 import com.schibsted.mrfitness.common.controller.FirebaseController
 import com.schibsted.mrfitness.common.usecase.CountdownUseCase
+import com.schibsted.mrfitness.features.finish.FinishViewModel
 import com.schibsted.mrfitness.features.login.LoginViewModel
 import com.schibsted.mrfitness.features.splash.SplashViewModel
 import com.schibsted.mrfitness.features.start.StartViewModel
@@ -22,4 +23,5 @@ val uiModule = module {
     viewModel { SplashViewModel(get()) }
     viewModel { LoginViewModel() }
     viewModel { StartViewModel() }
+    viewModel { FinishViewModel() }
 }

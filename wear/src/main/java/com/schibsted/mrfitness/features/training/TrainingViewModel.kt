@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.schibsted.mrfitness.common.base.BaseViewModel
 import com.schibsted.mrfitness.common.controller.SensorController
+import com.schibsted.mrfitness.common.utils.Event
 import com.schibsted.mrfitness.common.utils.logD
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -14,8 +15,9 @@ import java.util.concurrent.TimeUnit
 
 class TrainingViewModel : BaseViewModel() {
 
-
     private val mutableListZ = mutableListOf<Float>()
+
+    var repeats: Int = 30
 
     var sensorManager: SensorManager? = null
         set(value) {
@@ -32,11 +34,15 @@ class TrainingViewModel : BaseViewModel() {
     val gravity = MutableLiveData<String>()
     val counter = MutableLiveData<Double>()
     val stringCounter: LiveData<String>
+    val finishTraining: LiveData<Event<Boolean>>
 
     init {
         counter.value = 0.0
         stringCounter = Transformations.map(counter) {
             it.toInt().toString()
+        }
+        finishTraining = Transformations.map(counter) {
+            Event(it >= repeats)
         }
     }
 
@@ -52,13 +58,13 @@ class TrainingViewModel : BaseViewModel() {
                 mutableListZ.add(it.values[2])
                 val min = mutableListZ.min()
                 val max = mutableListZ.max()
-                if (mutableListZ.size == 101){
+                if (mutableListZ.size == 101) {
                     mutableListZ.removeAt(0)
                 }
-                    if (min != null && max != null && max.minus(min) > 10f){
-                            counter.value = counter.value?.plus(0.5)
-                        mutableListZ.clear()
-                        }
+                if (min != null && max != null && max.minus(min) > 10f) {
+                    counter.value = counter.value?.plus(0.5)
+                    mutableListZ.clear()
+                }
                 logD("sensor: AAAA${it.sensor.type} ${it.values?.contentToString()}")
             }?.addTo(disposables)
     }
